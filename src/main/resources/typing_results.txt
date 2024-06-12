@@ -1,0 +1,38 @@
+helloWords typed: 10, WPM: 40, Duration: 15s
+Words typed: 0, WPM: 0, Duration: 15s
+Words typed: 0, WPM: 0, Duration: 15s
+Words typed: 3, WPM: 12, Duration: 15s
+Words typed: 3, WPM: 12, Duration: 15s
+Words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 2, WPM: 8, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 1, WPM: 4, Duration: 15s
+Correct words typed: 2, WPM: 8, Duration: 15s
+Correct words typed: 4, WPM: 16, Duration: 15s
+Correct words typed: 1, WPM: 4, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 1, WPM: 4, Duration: 15s
+Correct words typed: 2, WPM: 8, Duration: 15s
+Correct words typed: 10, WPM: 40, Duration: 15s
+Correct words typed: 6, WPM: 24, Duration: 15s
+Correct words typed: 3, WPM: 12, Duration: 15s
+Correct words typed: 4, WPM: 16, Duration: 15s
+Correct words typed: 5, WPM: 20, Duration: 15s
+Correct words typed: 3, WPM: 12, Duration: 15s
+Correct words typed: 7, WPM: 28, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 11, WPM: 44, Duration: 15s
+Correct words typed: 8, WPM: 32, Duration: 15s
+Correct words typed: 10, WPM: 40, Duration: 15s
+Correct words typed: 11, WPM: 44, Duration: 15s
+Correct words typed: 11, WPM: 44, Duration: 15s
+Correct words typed: 8, WPM: 32, Duration: 15s
+Correct words typed: 0, WPM: 0, Duration: 15s
+Correct words typed: 8, WPM: 32, Duration: 15s
+Correct words typed: 6, WPM: 24, Duration: 15s
+Correct words typed: 1, WPM: 4, Duration: 15s
+Correct words typed: 8, WPM: 32, Duration: 15s
