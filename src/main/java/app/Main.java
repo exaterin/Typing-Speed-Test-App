@@ -76,7 +76,7 @@ public class Main {
         showStatsButton.addActionListener(e -> statisticsDisplayManager.showStatistics());
 
 
-        String[] durations = {"15", "30", "60"};
+        String[] durations = {"15", "30", "60", "120"};
         durationComboBox = new JComboBox<>(durations);
 
         String[] languages = {"English", "Czech"};
