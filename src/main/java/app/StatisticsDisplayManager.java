@@ -4,6 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 public class StatisticsDisplayManager {
     private final JFrame frame;
     private final ResultsRecorder resultsRecorder;
@@ -14,23 +23,90 @@ public class StatisticsDisplayManager {
         this.resultsRecorder = resultsRecorder;
     }
 
-    public void showStatistics() {
-        statsArea = new JTextArea();
-        updateStatsArea();
+    // Parse results from the recorder file
+    private List<StatisticsData> parseResults() {
+        List<String> results = resultsRecorder.readResults();
+        return results.stream()
+                .map(StatisticsData::fromString)
+                .collect(Collectors.toList());
+    }
 
-        JScrollPane scrollPane = new JScrollPane(statsArea);
+    public void displayStatistics() {
+        JDialog statisticsDialog = new JDialog(frame, "Statistics", false);
+        statisticsDialog.setLayout(new BorderLayout());
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.add("WPM Chart", createWPMChartPanel());
+        tabbedPane.add("Accuracy Chart", createAccuracyChartPanel());
+
         JPanel buttonPanel = new JPanel();
         JButton eraseButton = new JButton("Erase Statistics");
         eraseButton.addActionListener(this::eraseStatistics);
         buttonPanel.add(eraseButton);
 
-        JDialog statsDialog = new JDialog(frame, "Statistics", true);
-        statsDialog.setLayout(new BorderLayout());
-        statsDialog.add(scrollPane, BorderLayout.CENTER);
-        statsDialog.add(buttonPanel, BorderLayout.SOUTH);
-        statsDialog.setSize(400, 300);
-        statsDialog.setLocationRelativeTo(frame);
-        statsDialog.setVisible(true);
+        statisticsDialog.add(tabbedPane, BorderLayout.CENTER);
+        statisticsDialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        statisticsDialog.setSize(600, 400);
+        statisticsDialog.setLocationRelativeTo(frame);
+        statisticsDialog.setVisible(true);
+    }
+
+    private ChartPanel createWPMChartPanel() {
+        List<StatisticsData> statisticsData = parseResults();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        int index = 1;
+
+        if (statisticsData.isEmpty()) {
+            System.out.println("No wpm data available.");
+            return null;
+        }
+
+        for (StatisticsData data : statisticsData) {
+            dataset.addValue(data.getWpm(), "WPM", String.valueOf(index));
+            index++;
+        }
+
+        JFreeChart chart = ChartFactory.createLineChart(
+                "Words Per Minute (WPM) Over Time",
+                "Attempt",
+                "WPM",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false);
+
+        return new ChartPanel(chart);
+    }
+
+    private ChartPanel createAccuracyChartPanel() {
+        List<StatisticsData> statisticsData = parseResults();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        int index = 1;
+
+        if (statisticsData.isEmpty()) {
+            System.out.println("No accuracy data available.");
+            return null;
+        }
+
+        for (StatisticsData data : statisticsData) {
+            dataset.addValue(data.getAccuracyWords(), "Accuracy Over Words", String.valueOf(index));
+            dataset.addValue(data.getAccuracyLetters(), "Accuracy Over Letters", String.valueOf(index));
+            index++;
+        }
+
+        JFreeChart chart = ChartFactory.createLineChart(
+                "Accuracy Over Time",
+                "Attempt",
+                "Accuracy (%)",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false);
+
+        return new ChartPanel(chart);
     }
 
     // Method to load and display results

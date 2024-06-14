@@ -12,7 +12,7 @@ public class ResultsDisplayManager {
     }
 
     // Show the results in a separate window and store them into recorder
-    public void showResults(String textEntered, String originalText, int duration) {
+    public void showResults(String textEntered, String originalText, int duration, String selectedLanguage) {
         String[] enteredWords = textEntered.split("\\s+");
         String[] originalWords = originalText.split("\\s+");
 
@@ -23,10 +23,7 @@ public class ResultsDisplayManager {
         int wpm = (int) (enteredWords.length / minutes);
 
         // Record the result to a file
-        resultsRecorder.recordResult("Correct words typed: " + enteredWords.length + ", WPM: " + wpm +
-                ", Accuracy over words: " + String.format("%.2f%%", accuracyWords) +
-                ", Accuracy over letters: " + String.format("%.2f%%", accuracyLetters) +
-                ", Duration: " + duration + "s");
+        resultsRecorder.recordResult(enteredWords, wpm, accuracyWords, accuracyLetters, duration, selectedLanguage);
 
         // Display the results
         JOptionPane.showMessageDialog(frame,

@@ -21,7 +21,14 @@ public class ResultsRecorder {
     }
 
     // Write results into the recorder file
-    public void recordResult(String result) {
+    public void recordResult(String[] enteredWords, int wpm, double accuracyWords, double accuracyLetters, int duration, String selectedLanguage) {
+
+        String result = "Correct words typed: " + enteredWords.length + ", WPM: " + wpm +
+                ", Accuracy over words: " + String.format("%.2f%%", accuracyWords) +
+                ", Accuracy over letters: " + String.format("%.2f%%", accuracyLetters) +
+                ", Duration: " + duration +
+                ", Language: " + selectedLanguage;
+
         try {
             Files.writeString(resultsPath, result + System.lineSeparator(), StandardOpenOption.APPEND);
         } catch (IOException e) {

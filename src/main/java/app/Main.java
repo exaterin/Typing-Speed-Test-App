@@ -21,16 +21,15 @@ public class Main {
     private JButton startButton, showStatsButton;
     private Timer timer;
     private int timeLeft;
-    private final ResultsRecorder resultsRecorder;
     private final StatisticsDisplayManager statisticsDisplayManager;
-    private ResultsDisplayManager resultsDisplayManager;
+    private final ResultsDisplayManager resultsDisplayManager;
 
 
 
 
     public Main() {
         // Filename for storing results
-        resultsRecorder = new ResultsRecorder("src/main/resources/typing_results.txt");
+        ResultsRecorder resultsRecorder = new ResultsRecorder("src/main/resources/typing_results.txt");
 
         initializeUI();
 
@@ -73,7 +72,7 @@ public class Main {
         startButton.addActionListener(this::startTest);
 
         showStatsButton = new JButton("Show Statistics");
-        showStatsButton.addActionListener(e -> statisticsDisplayManager.showStatistics());
+        showStatsButton.addActionListener(e -> statisticsDisplayManager.displayStatistics());
 
 
         String[] durations = {"15", "30", "60", "120"};
@@ -133,7 +132,7 @@ public class Main {
                 durationComboBox.setEnabled(true);
                 languageComboBox.setEnabled(true);
                 showStatsButton.setEnabled(true);
-                resultsDisplayManager.showResults(inputArea.getText().trim(), textPane.getText().trim(), duration);
+                resultsDisplayManager.showResults(inputArea.getText().trim(), textPane.getText().trim(), duration, selectedLanguage);
             }
         });
         timer.start();
