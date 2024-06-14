@@ -20,6 +20,7 @@ public class ResultsRecorder {
         }
     }
 
+    // Write results into the recorder file
     public void recordResult(String result) {
         try {
             Files.writeString(resultsPath, result + System.lineSeparator(), StandardOpenOption.APPEND);
@@ -28,12 +29,23 @@ public class ResultsRecorder {
         }
     }
 
+    // Read the results from the recorder file
     public List<String> readResults() {
         try {
             return Files.readAllLines(resultsPath);
         } catch (IOException e) {
             e.printStackTrace();
             return List.of();
+        }
+    }
+
+    // Erase the results from the recorder file
+    public void eraseResults() {
+        try {
+            // Erase the content of the file
+            Files.newBufferedWriter(resultsPath, StandardOpenOption.TRUNCATE_EXISTING).close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

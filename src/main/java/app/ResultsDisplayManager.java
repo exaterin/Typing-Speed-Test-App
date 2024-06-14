@@ -11,6 +11,7 @@ public class ResultsDisplayManager {
         this.resultsRecorder = resultsRecorder;
     }
 
+    // Show the results in a separate window and store them into recorder
     public void showResults(String textEntered, String originalText, int duration) {
         String[] enteredWords = textEntered.split("\\s+");
         String[] originalWords = originalText.split("\\s+");
@@ -21,7 +22,7 @@ public class ResultsDisplayManager {
         double minutes = duration / 60.0;
         int wpm = (int) (enteredWords.length / minutes);
 
-        // Record the result
+        // Record the result to a file
         resultsRecorder.recordResult("Correct words typed: " + enteredWords.length + ", WPM: " + wpm +
                 ", Accuracy over words: " + String.format("%.2f%%", accuracyWords) +
                 ", Accuracy over letters: " + String.format("%.2f%%", accuracyLetters) +
@@ -36,6 +37,7 @@ public class ResultsDisplayManager {
                 "Test Results", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // Accuracy over words calculation
     private double calculateAccuracyOverWords(String[] enteredWords, String[] originalWords) {
         int correctWordsCount = 0;
         int minLength = Math.min(enteredWords.length, originalWords.length);
@@ -47,6 +49,7 @@ public class ResultsDisplayManager {
         return (double) correctWordsCount / enteredWords.length * 100;
     }
 
+    // Accuracy over letters calculation
     private double calculateAccuracyOverLetters(String textEntered, String originalText) {
         int correctLettersCount = 0;
         int minLen = Math.min(textEntered.length(), originalText.length());
