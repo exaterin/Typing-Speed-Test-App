@@ -12,8 +12,9 @@ public class TextLoader {
 
         switch (language.toLowerCase()) {
             case "english" -> this.filePath = Path.of(basePath + "english.txt");
-            case "spanish" -> this.filePath = Path.of(basePath + "spanish.txt");
             case "czech" -> this.filePath = Path.of(basePath + "czech.txt");
+            case "russian" -> this.filePath = Path.of(basePath + "russian.txt");
+            case "spanish" -> this.filePath = Path.of(basePath + "spanish.txt");
             default -> throw new IOException("Unsupported language");
         }
     }

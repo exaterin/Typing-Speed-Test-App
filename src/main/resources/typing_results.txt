@@ -3,6 +3,11 @@ Correct words typed: 1, WPM: 4, Accuracy over words: 100.00%, Accuracy over lett
 Correct words typed: 3, WPM: 12, Accuracy over words: 100.00%, Accuracy over letters: 100.00%, Duration: 15, Language: English
 Correct words typed: 12, WPM: 48, Accuracy over words: 91.67%, Accuracy over letters: 100.00%, Duration: 15, Language: English
 Correct words typed: 3, WPM: 12, Accuracy over words: 66.67%, Accuracy over letters: 93.33%, Duration: 15, Language: English
-Correct words typed: 11, WPM: 44, Accuracy over words: 90.91%, Accuracy over letters: 100.00%, Duration: 15, Language: English
-Correct words typed: 7, WPM: 28, Accuracy over words: 71.43%, Accuracy over letters: 69.70%, Duration: 15, Language: English
+Correct words typed: 11, WPM: 44, Accuracy over words: 90.91%, Accuracy over letters: 100.00%, Duration: 60, Language: English
+Correct words typed: 7, WPM: 28, Accuracy over words: 71.43%, Accuracy over letters: 69.70%, Duration: 60, Language: English
+Correct words typed: 1, WPM: 4, Accuracy over words: 0.00%, Accuracy over letters: 0.00%, Duration: 30, Language: English
+Correct words typed: 1, WPM: 4, Accuracy over words: 100.00%, Accuracy over letters: 100.00%, Duration: 120, Language: English
 Correct words typed: 1, WPM: 4, Accuracy over words: 0.00%, Accuracy over letters: 0.00%, Duration: 15, Language: English
+Correct words typed: 11, WPM: 44, Accuracy over words: 72.73%, Accuracy over letters: 96.08%, Duration: 60, Language: English
+Correct words typed: 1, WPM: 4, Accuracy over words: 90.00%, Accuracy over letters: 90.00%, Duration: 60, Language: Czech
+Correct words typed: 1, WPM: 4, Accuracy over words: 90.00%, Accuracy over letters: 90.00%, Duration: 30, Language: Czech

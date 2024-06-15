@@ -29,6 +29,7 @@ public class ResultsRecorder {
                 ", Duration: " + duration +
                 ", Language: " + selectedLanguage;
 
+
         try {
             Files.writeString(resultsPath, result + System.lineSeparator(), StandardOpenOption.APPEND);
         } catch (IOException e) {

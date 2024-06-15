@@ -6,12 +6,15 @@ import java.awt.event.ActionEvent;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 public class StatisticsDisplayManager {
     private final JFrame frame;
@@ -36,8 +39,10 @@ public class StatisticsDisplayManager {
         statisticsDialog.setLayout(new BorderLayout());
 
         JTabbedPane tabbedPane = new JTabbedPane();
+
         tabbedPane.add("WPM Chart", createWPMChartPanel());
         tabbedPane.add("Accuracy Chart", createAccuracyChartPanel());
+        tabbedPane.add("Duration Distribution", createDurationPieChartPanel());
 
         JPanel buttonPanel = new JPanel();
         JButton eraseButton = new JButton("Erase Statistics");
@@ -105,6 +110,30 @@ public class StatisticsDisplayManager {
                 true,
                 true,
                 false);
+
+        return new ChartPanel(chart);
+    }
+
+    private ChartPanel createDurationPieChartPanel() {
+        List<StatisticsData> statisticsData = parseResults();
+        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
+
+        // Count frequencies of each duration
+        Map<Integer, Integer> durationCounts = new HashMap<>();
+        for (StatisticsData data : statisticsData) {
+            durationCounts.merge(data.getDuration(), 1, Integer::sum);
+        }
+
+        // Add data to the dataset
+        for (Map.Entry<Integer, Integer> entry : durationCounts.entrySet()) {
+            dataset.setValue(entry.getKey() + "s", entry.getValue());
+        }
+
+        // Create the chart
+        JFreeChart chart = ChartFactory.createPieChart(
+                "Test Duration Distribution",
+                dataset,
+                true, true, false);
 
         return new ChartPanel(chart);
     }

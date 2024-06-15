@@ -45,8 +45,8 @@ public class Main {
 
         textPane = new JTextPane();
         textPane.setEditable(false);
-        textPane.setFont(new Font("SansSerif", Font.BOLD, 30));
-        textPane.setPreferredSize(new Dimension(800, 100));
+        textPane.setFont(new Font("SansSerif", Font.BOLD, 60));
+        textPane.setPreferredSize(new Dimension(800, 200));
 
         StyledDocument doc = textPane.getStyledDocument();
         SimpleAttributeSet centerAttr = new SimpleAttributeSet();
@@ -55,9 +55,8 @@ public class Main {
 
         textDisplayManager = new TextDisplayManager(textPane);
 
-
         inputArea = new JTextArea();
-        inputArea.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        inputArea.setFont(new Font("SansSerif", Font.PLAIN, 20));
         inputArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -78,7 +77,7 @@ public class Main {
         String[] durations = {"15", "30", "60", "120"};
         durationComboBox = new JComboBox<>(durations);
 
-        String[] languages = {"English", "Czech"};
+        String[] languages = {"English", "Czech", "Russian", "Spanish"};
         languageComboBox = new JComboBox<>(languages);
 
         JPanel controlPanel = new JPanel();
