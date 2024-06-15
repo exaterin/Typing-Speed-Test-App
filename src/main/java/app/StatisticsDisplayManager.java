@@ -16,17 +16,27 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+/**
+ * Class to  the display of statistical data from typing tests.
+ */
 public class StatisticsDisplayManager {
     private final JFrame frame;
     private final ResultsRecorder resultsRecorder;
-    private JTextArea statsArea;
 
+    /**
+     * Constructs a new StatisticsDisplayManager with a given main application frame and instance of ResultsRecorder.
+     * @param frame the main application window
+     * @param resultsRecorder the results recorder handling the statistical data
+     */
     public StatisticsDisplayManager(JFrame frame, ResultsRecorder resultsRecorder) {
         this.frame = frame;
         this.resultsRecorder = resultsRecorder;
     }
 
-    // Parse results from the recorder file
+    /**
+     * Parses results from the data recorder and converts them into a list of StatisticsData objects.
+     * @return a list of StatisticsData objects
+     */
     private List<StatisticsData> parseResults() {
         List<String> results = resultsRecorder.readResults();
         return results.stream()
@@ -34,6 +44,9 @@ public class StatisticsDisplayManager {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Displays statistics in a new dialog with tabs for different charts.
+     */
     public void displayStatistics() {
         JDialog statisticsDialog = new JDialog(frame, "Statistics", false);
         statisticsDialog.setLayout(new BorderLayout());
@@ -57,6 +70,10 @@ public class StatisticsDisplayManager {
         statisticsDialog.setVisible(true);
     }
 
+    /**
+     * Creates a chart panel displaying WPM (Words Per Minute) statistics over time.
+     * @return a ChartPanel containing the WPM chart
+     */
     private ChartPanel createWPMChartPanel() {
         List<StatisticsData> statisticsData = parseResults();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -85,6 +102,10 @@ public class StatisticsDisplayManager {
         return new ChartPanel(chart);
     }
 
+    /**
+     * Creates a chart panel displaying accuracy statistics over time.
+     * @return a ChartPanel containing the accuracy chart
+     */
     private ChartPanel createAccuracyChartPanel() {
         List<StatisticsData> statisticsData = parseResults();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -114,6 +135,10 @@ public class StatisticsDisplayManager {
         return new ChartPanel(chart);
     }
 
+    /**
+     * Creates a pie chart panel displaying the distribution of test durations.
+     * @return a ChartPanel containing the pie chart
+     */
     private ChartPanel createDurationPieChartPanel() {
         List<StatisticsData> statisticsData = parseResults();
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
@@ -129,7 +154,6 @@ public class StatisticsDisplayManager {
             dataset.setValue(entry.getKey() + "s", entry.getValue());
         }
 
-        // Create the chart
         JFreeChart chart = ChartFactory.createPieChart(
                 "Test Duration Distribution",
                 dataset,
@@ -138,19 +162,12 @@ public class StatisticsDisplayManager {
         return new ChartPanel(chart);
     }
 
-    // Method to load and display results
-    private void updateStatsArea() {
-        java.util.List<String> results = resultsRecorder.readResults();
-        statsArea.setText(String.join("\n", results));
-        statsArea.setEditable(false);
-    }
-
-    // Erase the statistics
+    /**
+     * Erases all recorded statistics.
+     * @param event the action event triggering this method
+     */
     private void eraseStatistics(ActionEvent event) {
         resultsRecorder.eraseResults();
-
-        // Refresh the text area to show the updated (empty) results
-        updateStatsArea();
 
         JOptionPane.showMessageDialog(frame, "Statistics have been erased.", "Information", JOptionPane.INFORMATION_MESSAGE);
     }

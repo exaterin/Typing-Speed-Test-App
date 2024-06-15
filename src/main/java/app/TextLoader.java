@@ -3,15 +3,25 @@ package app;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.io.IOException;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * TextLoader is responsible for loading and randomizing words from text files based on the language.
+ * It provides methods to get text in chunks or the entire text.
+ */
 public class TextLoader {
     private final List<String> words;
     private int currentIndex = 0;
 
+    /**
+     * Constructs a TextLoader for the specified language.
+     * Loads words from a file corresponding to the given language and shuffles them.
+     *
+     * @param language the language of the text to load ("English", "Czech", "Russian", "Spanish").
+     * @throws IOException if there is an error reading the file or if the language is not supported.
+     */
     public TextLoader(String language) throws IOException {
         String basePath = "src/main/resources/texts/";
 
@@ -36,6 +46,12 @@ public class TextLoader {
         Collections.shuffle(words);
     }
 
+    /**
+     * Retrieves the next chunk of words.
+     * If the end of the list is reached, it wraps around to the beginning.
+     *
+     * @return a string containing the next chunk of words.
+     */
     public String getNext() {
         if (currentIndex >= words.size()) {
             currentIndex = 0; // Reset index to loop the words
@@ -46,8 +62,12 @@ public class TextLoader {
         return result;
     }
 
+    /**
+     * Returns all words as a single string.
+     *
+     * @return a string containing all the words loaded, joined by spaces.
+     */
     public String getText(){
         return String.join(" ", words);
-
     }
 }

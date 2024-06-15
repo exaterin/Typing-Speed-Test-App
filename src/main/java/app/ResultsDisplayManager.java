@@ -2,16 +2,33 @@ package app;
 
 import javax.swing.*;
 
+/**
+ * Manages the displaying of typing test results.
+ */
+
 public class ResultsDisplayManager {
     private JFrame frame;
     private ResultsRecorder resultsRecorder;
 
+    /**
+     * Constructs a ResultsDisplayManager.
+     *
+     * @param frame            the main application window
+     * @param resultsRecorder  the object responsible for recording results
+     */
     public ResultsDisplayManager(JFrame frame, ResultsRecorder resultsRecorder) {
         this.frame = frame;
         this.resultsRecorder = resultsRecorder;
     }
 
-    // Show the results in a separate window and store them into recorder
+    /**
+     * Shows the typing test results in a message dialog and stores them using the results recorder.
+     *
+     * @param textEntered      the text entered by the user
+     * @param originalText     the original text displayed for typing
+     * @param duration         the duration of the test in seconds
+     * @param selectedLanguage the language used in the test
+     */
     public void showResults(String textEntered, String originalText, int duration, String selectedLanguage) {
         String[] enteredWords = textEntered.split("\\s+");
         String[] originalWords = originalText.split("\\s+");
@@ -34,7 +51,13 @@ public class ResultsDisplayManager {
                 "Test Results", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Accuracy over words calculation
+    /**
+     * Calculates the accuracy of typed words against the original text.
+     *
+     * @param enteredWords  the words entered by the user
+     * @param originalWords the original words displayed
+     * @return the percentage of correctly typed words
+     */
     private double calculateAccuracyOverWords(String[] enteredWords, String[] originalWords) {
         int correctWordsCount = 0;
         int minLength = Math.min(enteredWords.length, originalWords.length);
@@ -46,7 +69,13 @@ public class ResultsDisplayManager {
         return (double) correctWordsCount / enteredWords.length * 100;
     }
 
-    // Accuracy over letters calculation
+    /**
+     * Calculates the accuracy of typed letters against the original text.
+     *
+     * @param textEntered  the complete string entered by the user
+     * @param originalText the original text displayed
+     * @return the percentage of correctly typed letters
+     */
     private double calculateAccuracyOverLetters(String textEntered, String originalText) {
         int correctLettersCount = 0;
         int minLen = Math.min(textEntered.length(), originalText.length());
@@ -61,6 +90,4 @@ public class ResultsDisplayManager {
 
         return totalLettersEntered > 0 ? (double) correctLettersCount / totalLettersEntered * 100 : 0.0;
     }
-
-
 }

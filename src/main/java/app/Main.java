@@ -9,7 +9,10 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Objects;
 
-
+/**
+ * Main application class for a typing speed test program.
+ * This class sets up the user interface and handles user interactions for starting tests and viewing statistics.
+ */
 public class Main {
 
     private JFrame frame;
@@ -24,9 +27,9 @@ public class Main {
     private final StatisticsDisplayManager statisticsDisplayManager;
     private final ResultsDisplayManager resultsDisplayManager;
 
-
-
-
+    /**
+     * Constructor to initialize the main application.
+     */
     public Main() {
         // Filename for storing results
         ResultsRecorder resultsRecorder = new ResultsRecorder("src/main/resources/typing_results.txt");
@@ -38,6 +41,9 @@ public class Main {
 
     }
 
+    /**
+     * Initializes the user interface components and layouts.
+     */
     private void initializeUI() {
         frame = new JFrame("Typing Speed Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,6 +105,12 @@ public class Main {
         frame.setVisible(true);
     }
 
+    /**
+     * Starts a typing test based on selected options.
+     * Loads a text based on the selected language, sets up and starts a countdown timer for the duration selected by the user.
+     *
+     * @param e ActionEvent that triggered this method
+     */
     private void startTest(ActionEvent e) {
         String selectedLanguage = (String) languageComboBox.getSelectedItem();
 
@@ -143,6 +155,11 @@ public class Main {
         }
     }
 
+    /**
+     * The main method to launch the application.
+     *
+     * @param args command line arguments (not used).
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Main::new);
     }
