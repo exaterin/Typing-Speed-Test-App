@@ -123,3 +123,5 @@ Correct words typed: 11, WPM: 44, Accuracy over words: 0.00%, Accuracy over lett
 Correct words typed: 5, WPM: 20, Accuracy over words: 0.00%, Accuracy over letters: 0.00%, Duration: 15, Language: English
 Correct words typed: 10, WPM: 40, Accuracy over words: 0.00%, Accuracy over letters: 2.08%, Duration: 15, Language: English
 Correct words typed: 8, WPM: 32, Accuracy over words: 0.00%, Accuracy over letters: 5.13%, Duration: 15, Language: English
+Correct words typed: 5, WPM: 20, Accuracy over words: 100.00%, Accuracy over letters: 100.00%, Duration: 15, Language: English
+Correct words typed: 10, WPM: 40, Accuracy over words: 100.00%, Accuracy over letters: 100.00%, Duration: 15, Language: English

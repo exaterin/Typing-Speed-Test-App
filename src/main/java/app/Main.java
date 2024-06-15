@@ -129,7 +129,14 @@ public class Main {
                 durationComboBox.setEnabled(true);
                 languageComboBox.setEnabled(true);
                 showStatsButton.setEnabled(true);
-                resultsDisplayManager.showResults(inputArea.getText().trim(), textPane.getText().trim(), duration, selectedLanguage);
+
+                try {
+                    TextLoader textLoader = new TextLoader(selectedLanguage);
+                    resultsDisplayManager.showResults(inputArea.getText().trim(), textLoader.getText(), duration, selectedLanguage);
+
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         timer.start();
