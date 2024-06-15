@@ -40,7 +40,7 @@ public class TextDisplayManager {
         StyledDocument doc = textPane.getStyledDocument();
         SimpleAttributeSet attrs = new SimpleAttributeSet();
         StyleConstants.setFontFamily(attrs, "SansSerif");
-        StyleConstants.setFontSize(attrs, 20);
+        StyleConstants.setFontSize(attrs, 25);
 
         doc.setCharacterAttributes(0, doc.getLength(), attrs, false);
         int len = textEntered.length() - usedWordsCount - emptySpaceCount;
@@ -80,7 +80,7 @@ public class TextDisplayManager {
 
             SimpleAttributeSet attrs = new SimpleAttributeSet();
             StyleConstants.setFontFamily(attrs, "SansSerif");
-            StyleConstants.setFontSize(attrs, 20);
+            StyleConstants.setFontSize(attrs, 25);
             doc.insertString(0, text, untypedAttr);
             doc.setCharacterAttributes(0, doc.getLength(), attrs, false);
 
@@ -89,8 +89,9 @@ public class TextDisplayManager {
         }
     }
 
-    public void setText(String selectedLanguage) throws IOException {
-        textLoader = new TextLoader(selectedLanguage);
+    public void setText(TextLoader textLoader) throws IOException {
+
+        this.textLoader = textLoader;
 
         String text = textLoader.getNext();
         currentWords = text;
@@ -102,7 +103,7 @@ public class TextDisplayManager {
 
             SimpleAttributeSet attrs = new SimpleAttributeSet();
             StyleConstants.setFontFamily(attrs, "SansSerif");
-            StyleConstants.setFontSize(attrs, 20);
+            StyleConstants.setFontSize(attrs, 25);
 
             // Insert the new text with the intended attributes
             doc.insertString(0, text, attrs);

@@ -45,7 +45,6 @@ public class Main {
 
         textPane = new JTextPane();
         textPane.setEditable(false);
-        textPane.setFont(new Font("SansSerif", Font.BOLD, 10));
         textPane.setPreferredSize(new Dimension(800, 200));
 
         StyledDocument doc = textPane.getStyledDocument();
@@ -63,15 +62,16 @@ public class Main {
             }
         });
 
+        inputArea.setFont(new Font("SansSerif", Font.PLAIN, 20));
+
         timerLabel = new JLabel("Time: -- seconds", JLabel.CENTER);
-        timerLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
+        timerLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
 
         startButton = new JButton("Start");
         startButton.addActionListener(this::startTest);
 
         showStatsButton = new JButton("Show Statistics");
         showStatsButton.addActionListener(e -> statisticsDisplayManager.displayStatistics());
-
 
         String[] durations = {"15", "30", "60", "120"};
         durationComboBox = new JComboBox<>(durations);
@@ -101,45 +101,46 @@ public class Main {
 
     private void startTest(ActionEvent e) {
         String selectedLanguage = (String) languageComboBox.getSelectedItem();
+
         try {
             assert selectedLanguage != null;
-            textDisplayManager.setText(selectedLanguage);
+            TextLoader textLoader = new TextLoader(selectedLanguage);
+            textDisplayManager.setText(textLoader);
             textDisplayManager.updateCount();
+
+            inputArea.setEditable(true);
+            inputArea.setText("");
+            inputArea.requestFocusInWindow();
+
+            int duration = Integer.parseInt((String) Objects.requireNonNull(durationComboBox.getSelectedItem()));
+            timeLeft = duration;
+
+            startButton.setEnabled(false);
+            durationComboBox.setEnabled(false);
+            languageComboBox.setEnabled(false);
+            showStatsButton.setEnabled(false);
+
+            timer = new Timer(1000, event -> {
+                timeLeft--;
+                timerLabel.setText("Time: " + timeLeft + " seconds");
+                if (timeLeft <= 0) {
+                    timer.stop();
+
+                    inputArea.setEditable(false);
+                    startButton.setEnabled(true);
+                    durationComboBox.setEnabled(true);
+                    languageComboBox.setEnabled(true);
+                    showStatsButton.setEnabled(true);
+
+                    resultsDisplayManager.showResults(inputArea.getText().trim(), textLoader.getText(), duration, selectedLanguage);
+                }
+            });
+
+            timer.start();
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(frame, "Failed to load file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        inputArea.setEditable(true);
-        inputArea.setText("");
-        inputArea.requestFocusInWindow();
-        int duration = Integer.parseInt((String) Objects.requireNonNull(durationComboBox.getSelectedItem()));
-        timeLeft = duration;
-        startButton.setEnabled(false);
-        durationComboBox.setEnabled(false);
-        languageComboBox.setEnabled(false);
-        showStatsButton.setEnabled(false);
-
-        timer = new Timer(1000, event -> {
-            timeLeft--;
-            timerLabel.setText("Time: " + timeLeft + " seconds");
-            if (timeLeft <= 0) {
-                timer.stop();
-                inputArea.setEditable(false);
-                startButton.setEnabled(true);
-                durationComboBox.setEnabled(true);
-                languageComboBox.setEnabled(true);
-                showStatsButton.setEnabled(true);
-
-                try {
-                    TextLoader textLoader = new TextLoader(selectedLanguage);
-                    resultsDisplayManager.showResults(inputArea.getText().trim(), textLoader.getText(), duration, selectedLanguage);
-
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-        timer.start();
     }
 
     public static void main(String[] args) {
