@@ -1,4 +1,4 @@
-package app;
+package typing_speed_test.management;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +15,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import typing_speed_test.data.ResultsRecorder;
+import typing_speed_test.data.StatisticsData;
 
 /**
  * Class to  the display of statistical data from typing tests.

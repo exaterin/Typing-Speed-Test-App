@@ -1,4 +1,6 @@
-package app;
+package typing_speed_test.management;
+
+import typing_speed_test.data.ResultsRecorder;
 
 import javax.swing.*;
 

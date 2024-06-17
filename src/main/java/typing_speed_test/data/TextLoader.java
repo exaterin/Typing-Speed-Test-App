@@ -1,4 +1,4 @@
-package app;
+package typing_speed_test.data;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

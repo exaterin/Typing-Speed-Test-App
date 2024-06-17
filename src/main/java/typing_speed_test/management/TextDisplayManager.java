@@ -1,4 +1,6 @@
-package app;
+package typing_speed_test.management;
+
+import typing_speed_test.data.TextLoader;
 
 import javax.swing.*;
 import javax.swing.text.*;
@@ -143,7 +145,7 @@ public class TextDisplayManager {
     /**
      * Resets the word and space counters to zero.
      */
-    void updateCount(){
+    public void updateCount(){
         usedWordsCount = 0;
         emptySpaceCount = 0;
     }

@@ -1,4 +1,4 @@
-package app;
+package typing_speed_test.data;
 
 /**
  * Represents the statistical data for a typing test.

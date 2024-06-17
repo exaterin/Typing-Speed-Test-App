@@ -1,4 +1,10 @@
-package app;
+package typing_speed_test;
+
+import typing_speed_test.data.ResultsRecorder;
+import typing_speed_test.management.ResultsDisplayManager;
+import typing_speed_test.management.StatisticsDisplayManager;
+import typing_speed_test.management.TextDisplayManager;
+import typing_speed_test.data.TextLoader;
 
 import javax.swing.*;
 import javax.swing.text.*;
